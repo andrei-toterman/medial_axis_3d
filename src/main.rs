@@ -79,6 +79,7 @@ fn main() {
 
     let mut show_delaunay = false;
     let mut show_skeleton = false;
+    let mut show_skeleton_balls = false;
     let mut show_outline = true;
     let mut show_vertices = true;
     let mut show_spheres = false;
@@ -120,8 +121,10 @@ fn main() {
             if show_skeleton {
                 for (v1, v2) in medial_axis_draw.iter() {
                     draw_handle.draw_line_3D(v1, v2, Color::PURPLE);
-                    draw_handle.draw_sphere(v1, 0.5, Color::PURPLE);
-                    draw_handle.draw_sphere(v2, 0.5, Color::PURPLE);
+                    if show_skeleton_balls {
+                        draw_handle.draw_sphere_ex(v1, 0.5, 4, 6, Color::PURPLE);
+                        draw_handle.draw_sphere_ex(v2, 0.5, 4, 6, Color::PURPLE);
+                    }
                 }
             }
 
@@ -147,9 +150,11 @@ fn main() {
 
             if show_vertices {
                 for point in points.iter() {
-                    draw_handle.draw_sphere(
+                    draw_handle.draw_sphere_ex(
                         Vector3::from(*point),
                         0.3,
+                        4,
+                        6,
                         if !show_spheres {
                             Color::BLACK
                         } else {
@@ -203,6 +208,11 @@ fn main() {
                 Rectangle::new(10.0, gui_y.next().unwrap(), 30.0, 30.0),
                 Some(rstr!("show skeleton")),
                 show_skeleton,
+            );
+            show_skeleton_balls = draw_handle.gui_check_box(
+                Rectangle::new(10.0, gui_y.next().unwrap(), 30.0, 30.0),
+                Some(rstr!("show skeleton balls")),
+                show_skeleton_balls,
             );
             show_spheres = draw_handle.gui_check_box(
                 Rectangle::new(10.0, gui_y.next().unwrap(), 30.0, 30.0),

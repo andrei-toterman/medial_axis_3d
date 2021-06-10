@@ -177,5 +177,5 @@ pub fn point_inside_shape(point: &Point, shape: &[Face]) -> bool {
         }
     }
 
-    inside
+    shape.is_empty() || inside
 }
