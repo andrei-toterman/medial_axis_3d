@@ -17,71 +17,39 @@ pub struct Tetrahedron {
 
 impl Tetrahedron {
     pub fn new(p1: Point, p2: Point, p3: Point, p4: Point) -> Self {
+        #[rustfmt::skip]
         let alpha = nalgebra::Matrix4::new(
-            p1.x, p1.y, p1.z, 1.0, //
-            p2.x, p2.y, p2.z, 1.0, //
-            p3.x, p3.y, p3.z, 1.0, //
-            p4.x, p4.y, p4.z, 1.0, //
+            p1.x, p1.y, p1.z, 1.0,
+            p2.x, p2.y, p2.z, 1.0,
+            p3.x, p3.y, p3.z, 1.0,
+            p4.x, p4.y, p4.z, 1.0,
         )
         .determinant();
 
+        #[rustfmt::skip]
         let dx = nalgebra::Matrix4::new(
-            p1.x * p1.x + p1.y * p1.y + p1.z * p1.z,
-            p1.y,
-            p1.z,
-            1.0,
-            p2.x * p2.x + p2.y * p2.y + p2.z * p2.z,
-            p2.y,
-            p2.z,
-            1.0,
-            p3.x * p3.x + p3.y * p3.y + p3.z * p3.z,
-            p3.y,
-            p3.z,
-            1.0,
-            p4.x * p4.x + p4.y * p4.y + p4.z * p4.z,
-            p4.y,
-            p4.z,
-            1.0,
+            p1.x * p1.x + p1.y * p1.y + p1.z * p1.z, p1.y, p1.z, 1.0,
+            p2.x * p2.x + p2.y * p2.y + p2.z * p2.z, p2.y, p2.z, 1.0,
+            p3.x * p3.x + p3.y * p3.y + p3.z * p3.z, p3.y, p3.z, 1.0,
+            p4.x * p4.x + p4.y * p4.y + p4.z * p4.z, p4.y, p4.z, 1.0,
         )
         .determinant();
 
+        #[rustfmt::skip]
         let dy = -nalgebra::Matrix4::new(
-            p1.x * p1.x + p1.y * p1.y + p1.z * p1.z,
-            p1.x,
-            p1.z,
-            1.0,
-            p2.x * p2.x + p2.y * p2.y + p2.z * p2.z,
-            p2.x,
-            p2.z,
-            1.0,
-            p3.x * p3.x + p3.y * p3.y + p3.z * p3.z,
-            p3.x,
-            p3.z,
-            1.0,
-            p4.x * p4.x + p4.y * p4.y + p4.z * p4.z,
-            p4.x,
-            p4.z,
-            1.0,
+            p1.x * p1.x + p1.y * p1.y + p1.z * p1.z, p1.x, p1.z, 1.0,
+            p2.x * p2.x + p2.y * p2.y + p2.z * p2.z, p2.x, p2.z, 1.0,
+            p3.x * p3.x + p3.y * p3.y + p3.z * p3.z, p3.x, p3.z, 1.0,
+            p4.x * p4.x + p4.y * p4.y + p4.z * p4.z, p4.x, p4.z, 1.0,
         )
         .determinant();
 
+        #[rustfmt::skip]
         let dz = nalgebra::Matrix4::new(
-            p1.x * p1.x + p1.y * p1.y + p1.z * p1.z,
-            p1.x,
-            p1.y,
-            1.0,
-            p2.x * p2.x + p2.y * p2.y + p2.z * p2.z,
-            p2.x,
-            p2.y,
-            1.0,
-            p3.x * p3.x + p3.y * p3.y + p3.z * p3.z,
-            p3.x,
-            p3.y,
-            1.0,
-            p4.x * p4.x + p4.y * p4.y + p4.z * p4.z,
-            p4.x,
-            p4.y,
-            1.0,
+            p1.x * p1.x + p1.y * p1.y + p1.z * p1.z, p1.x, p1.y, 1.0,
+            p2.x * p2.x + p2.y * p2.y + p2.z * p2.z, p2.x, p2.y, 1.0,
+            p3.x * p3.x + p3.y * p3.y + p3.z * p3.z, p3.x, p3.y, 1.0,
+            p4.x * p4.x + p4.y * p4.y + p4.z * p4.z, p4.x, p4.y, 1.0,
         )
         .determinant();
 
