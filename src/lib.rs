@@ -169,13 +169,13 @@ pub fn point_inside_shape(point: &Point, shape: &[Face]) -> bool {
     }
 
     let segment = Edge::new(*point, Point::new(point.x, point.y, point.z + 1e30));
-    let mut count = 0u32;
+    let mut inside = false;
 
     for face in shape.iter() {
         if intersect(&segment, face) {
-            count += 1;
+            inside = !inside;
         }
     }
 
-    count & 1 != 0
+    inside
 }
