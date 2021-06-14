@@ -122,8 +122,8 @@ fn main() {
                 for (v1, v2) in medial_axis_draw.iter() {
                     draw_handle.draw_line_3D(v1, v2, Color::PURPLE);
                     if show_skeleton_balls {
-                        draw_handle.draw_sphere_ex(v1, 0.5, 4, 6, Color::PURPLE);
-                        draw_handle.draw_sphere_ex(v2, 0.5, 4, 6, Color::PURPLE);
+                        draw_handle.draw_sphere_ex(v1, 0.2, 4, 6, Color::PURPLE);
+                        draw_handle.draw_sphere_ex(v2, 0.2, 4, 6, Color::PURPLE);
                     }
                 }
             }
@@ -152,7 +152,7 @@ fn main() {
                 for point in points.iter() {
                     draw_handle.draw_sphere_ex(
                         Vector3::from(*point),
-                        0.3,
+                        0.2,
                         4,
                         6,
                         if !show_spheres {
